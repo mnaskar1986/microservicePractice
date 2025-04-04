@@ -34,7 +34,7 @@ public class UserController {
 		return user;
 	}
 
-	@PostMapping("users")
+	@PostMapping("/users")
 	public void saveUser(@RequestBody UserDao user) {
 		service.saveUser(user);
 	}
