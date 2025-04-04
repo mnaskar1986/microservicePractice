@@ -2,10 +2,17 @@ package com.springboot.practice.user;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
+
 public class UserDao {
 	
 	private Integer id;
+	
+	@Size(min=2, message="At least 2 characters needs to be there in the name!")
 	private String name;
+	
+	@Past(message="Date of birth should be in past!")
 	private LocalDate dateOfBirth;
 	
 	public UserDao(Integer id, String name, LocalDate dateOfBirth) {
