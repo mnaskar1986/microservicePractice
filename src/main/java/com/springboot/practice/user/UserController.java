@@ -2,7 +2,10 @@ package com.springboot.practice.user;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Locale;
 
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +23,11 @@ import jakarta.validation.Valid;
 public class UserController {
 	
 	private UserDaoService service;
+	private MessageSource messageSource;
 	
-	public UserController(UserDaoService service) {
+	public UserController(UserDaoService service, MessageSource messageSource) {
 		this.service = service;
+		this.messageSource = messageSource;
 	}
 	
 	@GetMapping("/users")
@@ -45,6 +50,12 @@ public class UserController {
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(savedUser.getId()).toUri();
 		return ResponseEntity.created(location).build();
+	}
+	
+	@GetMapping("/hello-world-internalization")
+	public String getGreetingMessage() {
+		Locale locale = LocaleContextHolder.getLocale();
+		return messageSource.getMessage("good.morning.message", null, "default message", locale);
 	}
 	
 	@DeleteMapping("users/{id}")
