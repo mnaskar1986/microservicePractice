@@ -21,7 +21,7 @@ public class VersionController {
 		return new Personv1("Madhumita Naskar");
 	}
 
-	@GetMapping(path= "person", params = "version=2")
+	@GetMapping(path= "/person/header", headers = "X-API-VERSION=2")
 	public Personv2 getSecondPersonRequestParam() {
 		return new Personv2(new Name("Madhumita", "Naskar"));
 	}
