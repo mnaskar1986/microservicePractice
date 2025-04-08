@@ -1,12 +1,12 @@
 package com.springboot.practice.filtering;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFilter;
 
 //@JsonIgnoreProperties("name")
+@JsonFilter("employeeFilter")
 public class EmployeeFiltering {
 	
 	private String name;
-	@JsonIgnore
 	private String password;
 	private String Department;
 	
